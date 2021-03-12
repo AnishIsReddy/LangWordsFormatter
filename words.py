@@ -1,37 +1,32 @@
 from selenium import webdriver
-import time
-import json
 
 words = []
-
 numwords = int(input("Enter total number of words: "))
 for i in range(1, numwords + 1):
     words.append(input("Enter word #" + str(i) + ": "))
 
-driver = webdriver.Chrome('chromedriver.exe', service_log_path = 'NUL')
-driver.get('https://www.wordsapi.com/')
+options = webdriver.ChromeOptions()
+options.add_experimental_option('excludeSwitches', ['enable-logging'])
+driver = webdriver.Chrome('chromedriver.exe', service_log_path = 'NUL', options=options)
+
 print("")
 
 for word in words:
-    driver.find_element_by_id('word').clear()
-    driver.find_element_by_id('word').send_keys(word)
-    driver.find_element_by_id('getWord').click()
+    print(word)
     
-    time.sleep(0.1)
-
     try:
-        data = json.loads(driver.find_element_by_class_name('hljs').text)
-        print(word)
-        print("")
-        print(data['results'][0]['partOfSpeech'])
-        print(data['results'][0]['definition'])
-        print(data['results'][0]['examples'][0])
-        print("")
-        print("")
+        driver.get('https://yourdictionary.com/' + word)
+        print(driver.find_element_by_class_name('pos').text)
+        print(driver.find_element_by_class_name('definition').text)
 
+        driver.get('https://sentence.yourdictionary.com/' + word)
+        print(driver.find_element_by_class_name('sentence-item').text)
+    
     except:
-        print("For some reason we could not get the word " + '"' + word + '"')
-        print("This might occur due to incorrect spelling or an error in the database")
+        print("An error occured when getting data for this word")
+
+    
+    print("")
 
 driver.close()
 input("Press any key to close . . .")
