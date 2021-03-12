@@ -8,8 +8,9 @@ numwords = int(input("Enter total number of words: "))
 for i in range(1, numwords + 1):
     words.append(input("Enter word #" + str(i) + ": "))
 
-driver = webdriver.Chrome('chromedriver.exe')
+driver = webdriver.Chrome('chromedriver.exe', service_log_path = 'NUL')
 driver.get('https://www.wordsapi.com/')
+print("")
 
 for word in words:
     driver.find_element_by_id('word').clear()
@@ -18,9 +19,8 @@ for word in words:
     
     time.sleep(0.1)
 
-    data = json.loads(driver.find_element_by_class_name('hljs').text)
-
     try:
+        data = json.loads(driver.find_element_by_class_name('hljs').text)
         print(word)
         print("")
         print(data['results'][0]['partOfSpeech'])
@@ -31,7 +31,7 @@ for word in words:
 
     except:
         print("For some reason we could not get the word " + '"' + word + '"')
-        print("This might occur due to bad spelling or an error pulling data")
+        print("This might occur due to incorrect spelling or an error in the database")
 
-
-input("Type any key to close . . .")
+driver.close()
+input("Press any key to close . . .")
