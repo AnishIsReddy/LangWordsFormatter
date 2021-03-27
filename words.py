@@ -1,10 +1,12 @@
 import subprocess
+
 try:
-    subprocess.run('pip install selenium')
+    subprocess.run('pip install Selenium')
 except:
     pass
 else:
     print("Selenium is not installed. Downloading it now.")
+
 
 from selenium import webdriver
 
