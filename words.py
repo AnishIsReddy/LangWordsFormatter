@@ -2,6 +2,8 @@ import subprocess
 
 try:
     subprocess.run('pip install Selenium',  capture_output = True)
+except:
+    pass
 
 from selenium import webdriver
 
