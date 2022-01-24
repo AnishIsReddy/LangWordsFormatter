@@ -41,7 +41,7 @@ for word in words:
 
     
     print("")
-    out.append("/n")
+    out.append("\n")
 
 driver.close()
 
