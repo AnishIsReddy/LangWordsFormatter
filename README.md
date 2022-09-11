@@ -5,4 +5,4 @@ ________________________________________________________________________________
 
 Requires [Python 3.7+](https://www.python.org/downloads/) and [Google Chrome](https://www.google.com/chrome/)
 
-I do not own chromedriver.exe. That can be found [here](https://chromedriver.chromium.org/)
+I do not own Python, Chromedriver, Selenium, or https://yourdictionary.com/. Chromedriver can be found [here](https://chromedriver.chromium.org/)
